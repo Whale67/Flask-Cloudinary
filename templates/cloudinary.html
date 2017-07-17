@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% from "fields.html" import render_field %}
+{% block body %}
+
+ <!-- IMAGE SLIDER -->
+        <div class="wrapper">
+        {% if find_user['profile_image_url'] %}
+          <div class="column-section clearfix">
+            <div class="column one-half">
+              <div class="main-title align-center">
+                <h4><strong><i class="pe-7s-camera pe-5x"></i></strong></h4> 
+                <!-- <div class="separator"><span></span></div> -->
+                  <h5 class="alttitle title-minimal">Profile Image</h5>
+                  <form id="uploadForm" method="POST" action="" enctype="multipart/form-data">
+                    <button class="sr-button" id="upload_widget_opener" type="submit" value="Upload Images">Add Image</button>
+                  </form> 
+                  <br>
+                  <a href="{{ url_for('save_image') }}" class="sr-button">Save</a>
+                </div>
+            </div>
+
+            <div class="column one-half last-col">
+              <div class="owlslider">
+                <div class="owl-item"><img src="https://res.cloudinary.com/ds8bt3a3o/image/upload/v{{ find_user['profile_image_url'] }}" class="userUpload" id="user_upload" public_id="{{ find_user['public_id'] }}" alt="user profile image"></div>
+              </div> <!-- END .owlslider -->
+            </div>
+          </div> 
+        </div>
+        {% else %}
+        <div class="column-section clearfix">
+            <div class="column one-half">
+              <div class="main-title align-center">
+                <h4><strong><i class="pe-7s-camera pe-5x"></i></strong></h4> 
+                <!-- <div class="separator"><span></span></div> -->
+                  <h5 class="alttitle title-minimal">Profile Image</h5>
+                  <form id="uploadForm" method="POST" action="" enctype="multipart/form-data">
+                    <button class="sr-button" id="upload_widget_opener" type="submit" value="Upload Images">Add Image</button>
+                  </form>
+                  <br>
+                  <a href="{{ url_for('save_image') }}" class="sr-button">Save</a>
+                </div>
+            </div>
+
+            <div class="column one-half last-col">
+              <div class="owlslider">
+                <div class="owl-item"><img src="../static/uploads/transparent.jpg" class="userUpload" id="user_upload" public_id="{{ find_user['public_id'] }}"  alt="no image"></div>
+              </div> <!-- END .owlslider -->
+            </div>
+          </div> 
+        </div>
+        {% endif %}
+
+        <!-- IMAGE SLIDER -->
+
+{% endblock %}
